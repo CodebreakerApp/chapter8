@@ -34,8 +34,16 @@ jobs:
       - name: Install azd
         uses: Azure/setup-azd@v0.1.0
 
+# this is the version for the release
+#      - name: Install .NET Aspire workload
+#        run: dotnet workload install aspire
+
+# temporary version for daily build
+      - name: Update workloads
+        run: dotnet workload update --skip-sign-check --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet8/nuget/v3/index.json
+
       - name: Install .NET Aspire workload
-        run: dotnet workload install aspire
+        run: dotnet workload install aspire --skip-sign-check --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet8/nuget/v3/index.jso
 
       - name: Log in with Azure (Federated Credentials)
         if: ${{ env.AZURE_CLIENT_ID != '' }}
