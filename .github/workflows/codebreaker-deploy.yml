@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install azd
-        uses: Azure/setup-azd
+        uses: Azure/setup-azd@latest
 
 # this is the version for the release
 #      - name: Install .NET Aspire workload
