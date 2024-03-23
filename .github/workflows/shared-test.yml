@@ -3,8 +3,12 @@ name: Shared workflow to build and test a .NET project
 on:
   workflow_call:
     inputs:
+      project-name:
+        description: 'The name of the project'
+        required: true
+        type: string
       solution-path:
-        description: 'The solution file of the project to build'
+        description: 'The solution file of the project to build and run tests'
         required: true
         type: string
       dotnet-version:
@@ -40,11 +44,11 @@ jobs:
         run: dotnet restore ${{ inputs.solution-path }}
 
       - name: Run unit tests
-        run: dotnet test --logger trx --results-directory "TestResults-${{ inputs.solution-path}}" --no-restore ${{ inputs.solution-path }}
+        run: dotnet test --logger trx --results-directory "TestResults-${{ inputs.project-name}}" --no-restore ${{ inputs.solution-path }}
 
       - name: Upload the test results
         uses: actions/upload-artifact@v4
         with:
-          name: test-results-${{ inputs.solution-path}}
-          path: TestResults-${{ inputs.solution-path}}
+          name: test-results-${{ inputs.project-name}}
+          path: TestResults-${{ inputs.project-name}}
         if: always()
