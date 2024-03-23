@@ -1,4 +1,4 @@
-name: Build and deploy
+name: Codebreaker Deploy
 
 on:
   workflow_dispatch:
