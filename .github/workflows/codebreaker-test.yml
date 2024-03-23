@@ -1,4 +1,4 @@
-name: Codebreaker Deploy
+name: Codebreaker Test
 
 on:
   workflow_dispatch:
