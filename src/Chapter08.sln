@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebreaker.CosmosCreate", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codebreaker.InitalizeAppConfig", "Codebreaker.InitalizeAppConfig\Codebreaker.InitalizeAppConfig.csproj", "{A950F11F-F05F-4D96-9F61-D54E8B473C4E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeBreaker.Bot.Tests", "CodeBreaker.Bot.Tests\CodeBreaker.Bot.Tests.csproj", "{66595264-6106-4742-B54B-A34FDBFC46D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{A950F11F-F05F-4D96-9F61-D54E8B473C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A950F11F-F05F-4D96-9F61-D54E8B473C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A950F11F-F05F-4D96-9F61-D54E8B473C4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66595264-6106-4742-B54B-A34FDBFC46D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66595264-6106-4742-B54B-A34FDBFC46D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66595264-6106-4742-B54B-A34FDBFC46D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66595264-6106-4742-B54B-A34FDBFC46D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
