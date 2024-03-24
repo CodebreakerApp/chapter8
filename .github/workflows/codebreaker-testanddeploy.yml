@@ -35,7 +35,6 @@ jobs:
     needs:  build-and-test
     uses: ./.github/workflows/shared-deploy.yml
     with:
-      solution-path: src/Chapter08.sln
       environment-name: ${{ vars.AZURE_ENV_NAME }}
       location: ${{ vars.AZURE_LOCATION }}
     secrets:
