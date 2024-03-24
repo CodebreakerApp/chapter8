@@ -1,0 +1,64 @@
+name: Shared workflow to deploy a .NET Aspire project
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        description: 'The working directory of the project'
+        required: false
+        type: string
+        default: './src'
+      environment-name:
+        description: 'The name of the environment to deploy to'
+        required: true
+        type: string
+      location:
+        description: 'The location of the environment to deploy to'
+        required: true
+        type: string
+    secrets: [AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_SUBSCRIPTION_ID]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    env:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      AZURE_ENV_NAME: ${{ inputs.AZURE_ENV_NAME }}
+      AZURE_LOCATION: ${{ inputs.AZURE_LOCATION }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install azd
+        uses: Azure/setup-azd@v0.1.0
+
+# this is the version for the release
+#      - name: Install .NET Aspire workload
+#        run: dotnet workload install aspire
+
+# temporary version for daily build
+      - name: Update workloads
+        run: dotnet workload update --skip-sign-check --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet8/nuget/v3/index.json
+
+      - name: Install .NET Aspire workload
+        run: dotnet workload install aspire --skip-sign-check --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet8/nuget/v3/index.json
+
+      - name: Log in with Azure (Federated Credentials)
+        if: ${{ env.AZURE_CLIENT_ID != '' }}
+        run: |
+          azd auth login `
+            --client-id "$Env:AZURE_CLIENT_ID" `
+            --federated-credential-provider "github" `
+            --tenant-id "$Env:AZURE_TENANT_ID"
+        shell: pwsh
+
+      - name: Provision Infrastructure
+        run: azd provision --debug --no-prompt
+
+      - name: Deploy Application
+        run: azd deploy --no-prompt
