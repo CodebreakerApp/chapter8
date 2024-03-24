@@ -1,7 +1,4 @@
-﻿using CodeBreaker.Bot.Api;
-using CodeBreaker.Bot.Exceptions;
-
-using Microsoft.AspNetCore.Http.HttpResults;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace CodeBreaker.Bot.Endpoints;
 
