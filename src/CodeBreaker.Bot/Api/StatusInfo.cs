@@ -1,6 +1,6 @@
 ﻿namespace CodeBreaker.Bot.Api;
 
-public record StatusResponse(
+public record StatusInfo(
     int GameNumber,
     string Message
 );
