@@ -24,10 +24,4 @@ jobs:
     uses: ./.github/workflows/shared-deploy-withenvironment.yml
     with:
       environment: production
-      environment-name: ${{ vars.AZURE_ENV_NAME }}
-      location: ${{ vars.AZURE_LOCATION }}
-    secrets:
-      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
   

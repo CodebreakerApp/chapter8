@@ -8,27 +8,10 @@ on:
         required: false
         type: string
         default: './src'
-      environment-name:
-        description: 'The name of the environment to deploy to'
-        required: true
-        type: string
-      location:
-        description: 'The location of the environment to deploy to'
-        required: true
-        type: string
       environment:
         description: 'The environment to deploy to'
         required: false
         type: string
-        default: 'development'
-    secrets:
-      AZURE_CLIENT_ID:
-        required: true
-      AZURE_TENANT_ID:
-        required: true
-      AZURE_SUBSCRIPTION_ID:
-        required: true
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -40,14 +23,14 @@ jobs:
       AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
       AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
       AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      AZURE_ENV_NAME: ${{ inputs.environment-name }}
-      AZURE_LOCATION: ${{ inputs.location }}
+      AZURE_ENV_NAME: ${{ vars.environment-name }}
+      AZURE_LOCATION: ${{ vars.location }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Install azd
-        uses: Azure/setup-azd@v0.1.0
+        uses: Azure/setup-azd@v1.0.0
 
 # this is the version for the release
 #      - name: Install .NET Aspire workload

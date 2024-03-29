@@ -64,7 +64,7 @@ jobs:
         shell: pwsh
 
       - name: Provision Infrastructure
-        run: azd provision --debug --no-prompt
+        run: azd provision --no-prompt
 
       - name: Deploy Application
         run: azd deploy --no-prompt
