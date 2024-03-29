@@ -22,6 +22,7 @@ jobs:
   build-and-deploy:
     needs:  build-and-test
     uses: ./.github/workflows/shared-deploy-withenvironment.yml
+    secrets: inherit
     with:
       environment: production
   
