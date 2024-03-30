@@ -8,7 +8,7 @@ builder.AddAzureProvisioning();
 //    .PublishAsAzureSqlDatabase()
 //    .AddDatabase("codebreaker");
 
-//var appConfig = builder.AddAzureAppConfiguration("codebreakerconfig");
+var appConfig = builder.AddAzureAppConfiguration("codebreakerconfig");
 
 // var keyVault = builder.AddAzureKeyVault("codebreakervault");
 
