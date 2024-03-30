@@ -24,5 +24,5 @@ jobs:
     uses: ./.github/workflows/shared-deploy-withenvironment.yml
     secrets: inherit
     with:
-      environment: codebreaker-08-prod
+      environment-name: codebreaker-08-prod
   
